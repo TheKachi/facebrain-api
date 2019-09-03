@@ -16,15 +16,20 @@ const db = knex({
     }
 });
 
+app.use(cors());
+
+app.use(bodyParser.json());
+
+app.get('/', (req, res)=> { res.send('working!')})
 const register = require('./controllers/register');
 
 const signin = require('./controllers/signin');
 
 const image = require('./controllers/image');
 
-app.use(bodyParser.json());
 
-app.use(cors());
+
+
 
 app.post('/signin', (req, res)=> { signin.handleSignin(req, res, db, bcrypt) })
 
